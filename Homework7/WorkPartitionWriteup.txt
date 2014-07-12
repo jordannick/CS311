@@ -1,0 +1,28 @@
+Nicholas Jordan
+CS311
+Homework 7 Write-up
+----
+
+The distribution of work is largely the same for primeMProc and primePThread. Each process or thread takes the fundamental idea of the Sieve of Eratosthenes to iterate from 2 (or 3) to the square root of max. 
+
+Instead of going and marking every multiple of the current number right away, it checks to see
+1. if that number has been marked as nonprime, and
+2. if that prime has been marked as used by another process/thread
+
+If not, it marks that prime as used (in a second bitmap) and proceeds to mark every multiple of it (in the first bitmap).
+
+Theoretically:
+Process #1 mark 2 in use...
+Process #2 sees 2 used, go to and mark 3 in use...
+Process #3 sees 2, 3, 4 used or nonprime, go to and mark 5 in use...
+Process #4 sees 2, 3, 4, 5, 6 used or nonprime, go to and mark 7 in use...
+etc
+
+
+At low input sizes, one process/thread will often finish everything before other processes/threads can do anything. Additionally, there may be some overlap like marking of same numbers multiple times.
+
+However, the concurrency benefits really start to shine once using very large input sizes, since each process/thread takes longer to do its task, and overlap marks become rarer.
+
+
+With primePThread, I used a nonthreaded preliminary loop to cross out all even numbers, due to performance issues without it (for some reason the threads took a very long time without this, unlike primeMProc). The threads then iterate through odd numbers only. The performance of this preliminary loop is pretty negligable even near UINT_MAX, and times were still comparable to primeMProc's as shown in the timings file.
+

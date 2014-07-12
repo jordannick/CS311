@@ -1,0 +1,13 @@
+Nicholas Jordan
+CS 311
+Homework 1
+
+Tests
+
+helloworld - Compiled with gcc -Wall. Observed correct output.
+
+check_vowel and odd_even - Compiled with gcc -Wall. Inputed a variety of characters, numbers, and floats to check correct output.
+
+read_file - Compiled with gcc -Wall. Created a testfile.txt, checked for that and checked for nonexistent files.
+
+sieve.py - Ran script with none, multiple, string, integer (including 0 and 1), and float arguments. Matched and confirmed expected prime numbers with online sources.
